@@ -6,6 +6,28 @@ dep events;
 dep interface;
 dep utils;
 
+use {
+    data_structures::*,
+    errors::*,
+    events::*,
+    interface::*,
+    // utils::*,
+    std::{
+        auth::msg_sender,
+        block::timestamp,
+        call_frames::{
+            contract_id,
+            msg_asset_id,
+        },
+        context::msg_amount,
+        logging::log,
+        token::{
+            mint_to,
+            transfer,
+        },
+    },
+};
+
 storage {
     pet: StorageMap<Identity, Swaygotchi> = StorageMap {},
 }
@@ -22,6 +44,7 @@ impl sway_gotchi for Contract {
         // create a new player struct
         let new_swaygotchi = Swaygotchi {
             age: 0,
+            time_born: timestamp(),
         };
 
         // add the pet to storage
@@ -35,7 +58,7 @@ impl sway_gotchi for Contract {
         let sender = msg_sender().unwrap();
         let mut egg = storage.pet.get(sender).unwrap();
         let current_time = timestamp();
-        let birth_time = food.time_born.unwrap();
+        let birth_time = egg.time_born;
 
         let hours = 0;
         let hatch_time = birth_time + hours;
@@ -43,7 +66,7 @@ impl sway_gotchi for Contract {
         require(current_time >= hatch_time, "Egg is not ready to hatch");
 
         // increase age by 1yr
-        let new_age = pet.age + 1;
+        let new_age = egg.age + 1;
 
         // overwrite storage with the updated pet age
         storage.pet.insert(msg_sender().unwrap(), egg);

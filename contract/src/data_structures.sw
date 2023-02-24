@@ -18,13 +18,13 @@ impl Eq for State {
 }
 
 pub struct Swaygotchi {
-    id: Identity
-    name: String!
-    color: Colors
+    // name: str[10],
+    // color: Colors,
     age: u64,
-    gender: Gender,
-    character: Characters,
-    stage: Stages,
+    time_born: u64,
+    // gender: Gender,
+    // character: Characters,
+    // stage: Stages,
 }
 
 impl Swaygotchi {
@@ -93,10 +93,10 @@ pub struct Stats {
 }
 
 pub struct Room {
-    room_type: Rooms
-    items: Items
-    furniture: Furniture
-    decor: Decor
+    room_type: Rooms,
+    items: Items,
+    furniture: Furniture,
+    decor: Decor,
 }
 
 pub enum Rooms {
@@ -109,8 +109,8 @@ pub enum Rooms {
 }
 
 pub struct Food {
-    food_type: FoodTypes
-    food_option: FoodOptions
+    food_type: FoodTypes,
+    food_option: FoodOptions,
 }
 
 pub enum FoodTypes {

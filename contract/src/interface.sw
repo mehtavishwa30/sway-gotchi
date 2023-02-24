@@ -1,21 +1,25 @@
 library interface;
 
+dep data_structures;
+
+use data_structures::*;
+
 abi sway_gotchi {
     // choose your pet, initialise the swaygotchi egg
     #[storage(read, write)]
-    fn new_swaygotchi();
+    fn new_swaygotchi(age: u64);
 
     // hatch the swaygotchi egg
-    #[storage(age: )]
-    fn hatch() -> ;
+    #[storage(read, write)]
+    fn hatch(age: u64);
 
     // check status to see how the swaygotchi is doing
-    #[storage()]
+    /* #[storage(read, write)]
     fn check_status();
 
     // feed the swaygotchi when it's hungry [fridge, restaurant, cook]
     #[storage(read, write)]
-    fn feed(hunger: u64, food_type: FoodType, food_option: FoodOptions) -> u64;
+    fn feed(hunger: u64, food_type: FoodTypes, food_option: FoodOptions) -> u64;
 
     // give the swagotchi a bath when it poops 💩
     #[storage(read, write)]
@@ -30,7 +34,7 @@ abi sway_gotchi {
     fn discipline(intelligence: u64) -> u64;
 
     // medicate the swaygotchi to protect it against viruses
-    #[storage()]
+    #[storage(read ,write)]
     fn medicate(health: u64) -> u64;
 
     // turn off the lights to put the swaygotchi to sleep
@@ -38,10 +42,10 @@ abi sway_gotchi {
     fn sleep(light: bool, energy: u64) -> bool;
 
     // age the swaygotchi [egg > baby > child > teen > adult > professional]
-    #[storage()]
+    #[storage(read, write)]
     fn grow_up();
 
     // decorate the swaygotchi's room
-    #[storage()]
-    fn decorate();
+    #[storage(read, write)]
+    fn decorate(); */
 }
